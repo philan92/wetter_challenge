@@ -1,0 +1,42 @@
+.control-bar {
+  height: 90px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 24px;
+
+  .play-button {
+    color: #1876d1;
+  }
+  .date-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 65px;
+    
+    & * {
+      color: #1876d1;
+    }
+
+
+    .time {
+      margin-bottom: 5px;
+      margin-right: 10px;
+      font-weight: 700;
+    }
+    .date {
+      font-size: small;
+    }
+  }
+
+  .loop-button {
+    color: #89a6c3;
+    margin-left: 10px;
+
+    &.active {
+      color: #1876d1;
+    }
+  }
+}
