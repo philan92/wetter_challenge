@@ -7,11 +7,29 @@ import "./ControlBar.scss";
 import Moment from "react-moment";
 import moment from "moment";
 
-function valuetext(value: number) {
-  return `${value} Uhr`;
-}
-
-/** Displays a Control Bar that contains a Playbutton, a Slider and a Loopbutton */
+/** Displays a Control Bar that contains a Playbutton, a Slider and a Loopbutton
+ * 
+ * @param timeSteps
+ * List of timeSteps used for deisplaing all times on the slider
+ * 
+ * @param isPlaying
+ * Sets the state of the play button
+ * 
+ * @param isLooping
+ * Sets the state of the loop button
+ * 
+ * @param activeIndex
+ * Sets the position of the slider
+ * 
+ * @param onPlayClick
+ * Callback function called when the play button was clicked
+ * 
+ * @param onLoopClick
+ * Callback function called when the loop button was clicked
+ * 
+ * @param onSliderChange
+ * Callback function called when the loop button was moved and gives the current position
+ */
 const ControlBar = ({
   timeSteps,
   isPlaying,
