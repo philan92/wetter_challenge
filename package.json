@@ -7,9 +7,6 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.4",
     "@mui/material": "^5.2.4",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.14",
     "@types/react": "^17.0.37",
@@ -27,8 +24,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-dotenv && react-app-rewired start",
-    "build": "react-dotenv && react-app-rewired build"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,11 +43,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "react-dotenv": {
-    "whitelist": [
-      "MAPBOX_API_TOKEN"
     ]
   },
   "devDependencies": {
