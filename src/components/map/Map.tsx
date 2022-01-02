@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactMapGL, { NavigationControl, Source } from "react-map-gl";
+import ReactMapGL, { NavigationControl } from "react-map-gl";
 import "./Map.scss";
 
 /** Displays map with weather data
@@ -15,6 +15,9 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
     zoom: 6,
   });
 
+  const minZoom = 6;
+  const maxZoom = 14;
+
   const rasterStyle = {
     version: 8,
     sources: {
@@ -22,6 +25,7 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
         type: "raster",
         tiles: [satFilePath],
         tileSize: 256,
+        //volatile: true
       },
     },
     layers: [
@@ -29,8 +33,8 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
         id: "simple-tiles",
         type: "raster",
         source: "raster-tiles",
-        minzoom: 6,
-        maxzoom: 14,
+        minzoom: minZoom,
+        maxzoom: maxZoom,
       },
     ],
   };
@@ -44,14 +48,13 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
         {...viewport}
         width="100%"
         height="100%"
-        maxZoom={13}
-        minZoom={6}
+        minZoom={minZoom}
+        maxZoom={maxZoom - 1}
         mapStyle={rasterStyle}
         onViewportChange={(nextViewport: React.SetStateAction<any>) =>
           setViewport(nextViewport)
         }
       >
-        <Source id="my-data" type="raster" tiles={[satFilePath]}></Source>
         <NavigationControl
           style={{
             right: 10,

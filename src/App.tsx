@@ -8,10 +8,11 @@ function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch TimeStep data on mount
   useEffect(() => {
-    fetchData();
+    fetchData().then(() => setIsLoading(false));
   }, []);
 
   // Play/Pause functionality
@@ -25,7 +26,7 @@ function App() {
         if (!isLooping && activeIndex === timeSteps.length - 1) {
           setIsPlaying(false);
         }
-      }, 200);
+      }, 500);
     }
     return () => {
       clearInterval(interval);
@@ -37,8 +38,10 @@ function App() {
       "https://d39iuqtftml5m4.cloudfront.net/radar/germany/w3_hd_sat.json"
     );
     const data = await response.json();
-    const steps = data.timesteps;
-    setTimeSteps(steps);
+    const steps: any[] = data.timesteps;
+
+    // cut the array to meet the requirement now-30min - now+90min
+    setTimeSteps(steps.slice(30, 55));
   };
 
   const getListOfDatesFromTimeSteps = (): string[] => {
@@ -46,14 +49,14 @@ function App() {
   };
 
   const getCurrentSatFilePath = (): string => {
+    if (!timeSteps) return "";
     const tileList: string[] = timeSteps.map((step) => step.tiles);
-    let activeTile: string = tileList[activeIndex];
-    if (!activeTile) return '';
-    activeTile = `https://d39iuqtftml5m4.cloudfront.net${activeTile}`
-    console.log(activeTile);
-    return activeTile;
+    return tileList[activeIndex]
+      ? `https://d39iuqtftml5m4.cloudfront.net${tileList[activeIndex]}`
+      : "";
   };
 
+  if (isLoading) return null;
   return (
     <div className="App">
       <Map satFilePath={getCurrentSatFilePath()} />

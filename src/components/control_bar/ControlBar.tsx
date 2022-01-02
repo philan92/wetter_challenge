@@ -33,7 +33,7 @@ const ControlBar = ({
   timeSteps,
   isPlaying,
   isLooping,
-  activeIndex,
+  activeIndex = 0,
   onPlayClick,
   onLoopClick,
   onSliderChange,
@@ -75,11 +75,12 @@ const ControlBar = ({
         style={{ top: 10 }}
         key={"slider"}
         value={activeIndex}
+        defaultValue={0}
         onChange={(e, value) => onSliderChange(value)}
         max={timeSteps.length - 1}
         marks={[
           {
-            value: 36,
+            value: 6,
             label: "Jetzt",
           },
         ]}
