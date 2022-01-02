@@ -46,13 +46,17 @@ function App() {
   };
 
   const getCurrentSatFilePath = (): string => {
-    const tileList = timeSteps.map(step => step.tiles)
-    return tileList[activeIndex];
-  }
+    const tileList: string[] = timeSteps.map((step) => step.tiles);
+    let activeTile: string = tileList[activeIndex];
+    if (!activeTile) return '';
+    activeTile = `https://d39iuqtftml5m4.cloudfront.net${activeTile}`
+    console.log(activeTile);
+    return activeTile;
+  };
 
   return (
     <div className="App">
-      <Map satFilePath={getCurrentSatFilePath()}/>
+      <Map satFilePath={getCurrentSatFilePath()} />
       <ControlBar
         timeSteps={getListOfDatesFromTimeSteps()}
         activeIndex={activeIndex}
