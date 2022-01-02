@@ -40,7 +40,7 @@ function App() {
     const data = await response.json();
     const steps: any[] = data.timesteps;
 
-    // cut the array to meet the requirement now-30min - now+90min
+    // cut the array to meet the requirement from now-30min to now+90min
     setTimeSteps(steps.slice(30, 55));
   };
 

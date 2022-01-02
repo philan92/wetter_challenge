@@ -24,8 +24,6 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
       "raster-tiles": {
         type: "raster",
         tiles: [satFilePath],
-        tileSize: 256,
-        //volatile: true
       },
     },
     layers: [
