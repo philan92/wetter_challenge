@@ -30,7 +30,7 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
         type: "raster",
         source: "raster-tiles",
         minzoom: 6,
-        maxzoom: 8,
+        maxzoom: 14,
       },
     ],
   };
@@ -44,7 +44,7 @@ const Map = ({ satFilePath }: { satFilePath: string }) => {
         {...viewport}
         width="100%"
         height="100%"
-        maxZoom={7}
+        maxZoom={13}
         minZoom={6}
         mapStyle={rasterStyle}
         onViewportChange={(nextViewport: React.SetStateAction<any>) =>
